@@ -50,33 +50,43 @@ SHEET = GSPREAD_CLIENT.open(
 
 def get_sales_data():
     """
-    Get sales figures input from the user
+    Get sales figures input from the user.
+    Run a while loop to collect a valid string of data from the user via
+    the terminal, which must be a string of 6 numbers separated by commas.
+    The loop will repeatedly request data, until it is valid.
     """
+
     print(
         "Enter sales data from the last market.\n"
         "Data should be six numbers, separated by comas.\n"
         "Example: 10,20,30,40,50,60\n"
     )
+    while True:
+        data_str = input("Enter your data here: ")
+        sales_data = data_str.split(",")
 
-    data_str = input("Enter your data here: ")
-    sales_data = data_str.split(',')
-    validate_data(sales_data)
+        if validate_data(sales_data):
+            break
+
+    return sales_data
 
 
 def validate_data(values: list):
-    '''
+    """
     Converts all string values into integers
     Raises error if there aren't 6 values or any string cannot be converted
-    '''
+    """
 
     try:
         if len(values) != 6:
-            raise ValueError(
-                f'Exactlty 6 values required, you provided {len(values)}.'
-            )
+            raise ValueError(f"Exactlty 6 values required, you provided {len(values)}.")
         result = [int(value) for value in values]
     except ValueError as e:
-        print(e, 'Try again.\n')
+        print(e, "Try again.\n")
+        return False
+    else:
+        return True
 
 
-get_sales_data()
+data = get_sales_data()
+print(data)
