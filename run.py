@@ -126,11 +126,23 @@ def calculate_surplus_data(sales_row: list):
     return surplus_data
 
 
+def update_surplus_data(data: list):
+    '''
+    Updates surplus worksheet, add new row with the list data provided.
+    :param: list of integers
+    '''
+    print('Updating surplus worksheet..\n')
+    surplus_worksheet = SHEET.worksheet('surplus')
+    surplus_worksheet.append_row(data)
+    print('Surplus worksheet updated successfully.\n')
+
+
 def main():
     '''Run all program functions'''
     sales_data = get_sales_data()
     update_sales_worksheet(sales_data)
     new_surplus_data = calculate_surplus_data(sales_data)
+    update_surplus_data(new_surplus_data)
 
 
 print('Welcome to Love Sandwiches Data Automation')
