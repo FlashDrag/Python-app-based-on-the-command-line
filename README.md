@@ -1,5 +1,9 @@
 # Love Sandwiches
 
+[Live link](https://love-sandwiches-code-inst.herokuapp.com/)
+
+[SpreadSheet](https://docs.google.com/spreadsheets/d/1GLTH3nfhqOTAzVXfi88Qvox8sGyKK09mjTV5be8cv14/edit?usp=sharing)
+
 This is a python script that uses the gspread library to access a Google Spreadsheet and perform operations on it. The script is used to manage the sales and stock data for a small business that sells sandwiches.
 
 The program requests sales data from the user, validates it, and then updates three worksheets in the spreadsheet: sales, surplus, and stock. The sales worksheet is updated with the user's inputted data. The surplus worksheet is updated by comparing the user's inputted data (sales) with stock data from the spreadsheet and calculating the difference between them. Finally, the stock worksheet is updated by calculating an average of the last 5 entries in each column of sales data and adding 10%.
