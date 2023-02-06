@@ -71,7 +71,7 @@ def get_sales_data() -> list:
         if result:
             break
 
-    return sales_data
+    return result
 
 
 def validate_data(values: list) -> list:
@@ -118,12 +118,19 @@ def calculate_surplus_data(sales_row: list):
     stock = SHEET.worksheet('stock').get_all_values()
     stock_row = stock[-1]
 
+    surplus_data = []
+    for stock, sales in zip(stock_row, sales_row):
+        surplus = int(stock) - sales
+        surplus_data.append(surplus)
+
+    return surplus_data
+
 
 def main():
     '''Run all program functions'''
     sales_data = get_sales_data()
     update_sales_worksheet(sales_data)
-    calculate_surplus_data(sales_data)
+    new_surplus_data = calculate_surplus_data(sales_data)
 
 
 print('Welcome to Love Sandwiches Data Automation')
