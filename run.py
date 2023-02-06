@@ -1,6 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
-from pprint import pprint
+
 
 # APIs list that the app should access in order to run
 SCOPE = [
@@ -32,7 +32,7 @@ def get_sales_data() -> list:
         "Example: 10,20,30,40,50,60\n"
     )
     while True:
-        data_str = input("Enter your data here: ")
+        data_str = input("Enter your data here:\n")
         sales_data = data_str.split(",")
 
         result = validate_data(sales_data)
