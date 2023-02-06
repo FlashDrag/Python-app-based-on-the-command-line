@@ -48,12 +48,13 @@ SHEET = GSPREAD_CLIENT.open(
 )  # pass the name of the google spreadsheet
 
 
-def get_sales_data():
+def get_sales_data() -> list:
     """
     Get sales figures input from the user.
     Run a while loop to collect a valid string of data from the user via
     the terminal, which must be a string of 6 numbers separated by commas.
     The loop will repeatedly request data, until it is valid.
+    :return: list of integers
     """
 
     print(
@@ -65,16 +66,19 @@ def get_sales_data():
         data_str = input("Enter your data here: ")
         sales_data = data_str.split(",")
 
-        if validate_data(sales_data):
+        result = validate_data(sales_data)
+        if result:
             break
 
     return sales_data
 
 
-def validate_data(values: list):
+def validate_data(values: list) -> list:
     """
     Converts all string values into integers
     Raises error if there aren't 6 values or any string cannot be converted
+    :param: list of strings
+    :return: list of integers
     """
 
     try:
@@ -85,8 +89,7 @@ def validate_data(values: list):
         print(e, "Try again.\n")
         return False
     else:
-        return True
+        return result
 
 
-data = get_sales_data()
-print(data)
+sales_data = get_sales_data()
