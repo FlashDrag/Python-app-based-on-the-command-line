@@ -111,9 +111,11 @@ def get_last_5_entries_sales():
     return columns
 
 
-def calculate_stock_data(data):
+def calculate_stock_data(data: list):
     '''
     Calculate the average stock for each item type, adding 10%
+    :param: list of lists with last 5 enteries for each sandwich
+    :return: list of stock numbers (row for worksheet) for next market day
     '''
     print("Calculating stock data..\n")
 
@@ -127,6 +129,16 @@ def calculate_stock_data(data):
     return new_stock_data
 
 
+def get_stock_values(data: list):
+    '''
+    Get sheeet headings and print dict with the headings and their values from list of stock numbers
+    :param: list of stock numbers (row for worksheet) for next market day
+    '''
+    headings = SHEET.worksheet('stock').get_all_values()[0]
+    d = dict(zip(headings, data))
+    print(f'Make the following numbers of sasndwiches for next market:\n{d}')
+
+
 def main():
     '''Run all program functions'''
     sales_data = get_sales_data()
@@ -136,6 +148,7 @@ def main():
     sales_columns = get_last_5_entries_sales()
     stock_data = calculate_stock_data(sales_columns)
     update_worksheet(stock_data, 'stock')
+    get_stock_values(stock_data)
 
 
 print('Welcome to Love Sandwiches Data Automation')
