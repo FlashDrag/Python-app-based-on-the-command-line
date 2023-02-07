@@ -26,7 +26,8 @@ To run this script, you need to have the following installed:
 ## How to run
 - Clone this repository to your local machine
 - Replace the credentials JSON file with your own Google API credentials;
-[See instruction](instruction.md)
+
+    [See instruction](instruction.md)
 - Run the script by executing python run.py in the terminal
 - Follow the prompts in the terminal to input the sales data
 - The worksheets in the Google Spreadsheet will be updated with the sales, surplus, and stock data.
